@@ -1,16 +1,6 @@
-from enum import Enum, unique
 from sys import argv
-from logger import Logger, LoggerError, ErrType
-from logging import Formatter
+from logger import Logger, LoggerError, ErrType, StatusType
 from lexer import Lexer
-
-@unique
-class Colors(Enum):
-    RED = "\033[31m",
-    WHITE = "\033[0M",
-    GREEN = "\033[32M",
-    BLUE = "\033[34M",
-    PINK = "\033[35M"
 
 def main(argv) -> int:
     argc     = len(argv)
@@ -27,13 +17,11 @@ def main(argv) -> int:
             print("Executing file")
             filename = argv[1]
 
-    formatter = Formatter("%(asctime)s: %(name)s: %(levelname)s: %(message)s")
-
     # TODO: Change this to work in windows and to check dirs
-    logger = Logger(__name__, "./log/main.log", formatter, log)
+    logger = Logger(__name__, log)
 
     try:
-        logger.print(ErrType.INFO, "Starting logger...")
+        logger.print(ErrType.INFO, "Starting logger...", StatusType.BEGIN)
     except LoggerError as err:
         print(f"Logger error! {err.message}")
 
@@ -43,12 +31,12 @@ def main(argv) -> int:
     f    = None
 
     try:
-        logger.print(ErrType.INFO, "Reading file...")
+        logger.print(ErrType.INFO, "Reading file...", StatusType.NORMAL)
         f = open(filename, "r")
         code = f.read()
     except FileNotFoundError:
         if filename == "": filename = "nothing"
-        logger.print(ErrType.FATAL, f"Given file ({filename}) is invalid")
+        logger.print(ErrType.FATAL, f"Given file ({filename}) is invalid", StatusType.EXIT)
 
     finally:
         if f is not None:
@@ -56,14 +44,14 @@ def main(argv) -> int:
         else:
             return 1
 
-        if code == "": logger.print(ErrType.FATAL, "File not given!")
+        if code == "": return 1
 
-        logger.print(ErrType.INFO, "Starting Lexer...")
+        logger.print(ErrType.INFO, "Starting Lexer...", StatusType.NORMAL)
         lexer = Lexer(code)
 
         lexer.lex()
 
-        logger.print(ErrType.INFO, f"Ending process with status 0")
+        logger.print(ErrType.INFO, f"Ending process with status 0", StatusType.EXIT)
 
         return 0
 
