@@ -64,6 +64,6 @@ class Logger:
             elif level == ErrType.WARNING:
                 self.logger.warning(message)
             elif level == ErrType.INFO:
-                self.logger.warning(message)
+                self.logger.info(message)
 
             return
