@@ -24,14 +24,16 @@ def main(argv) -> int:
             print("WARNING: Disabling logger")
             log = False
         else:
+            print("Executing file")
             filename = argv[1]
 
     formatter = Formatter("%(asctime)s: %(name)s: %(levelname)s: %(message)s")
 
-    logger = Logger(__name__, "call.log", formatter, log)
+    # TODO: Change this to work in windows and to check dirs
+    logger = Logger(__name__, "./log/main.log", formatter, log)
 
     try:
-        logger.print(ErrType.INFO, "Hello, World")
+        logger.print(ErrType.INFO, "Starting logger...")
     except LoggerError as err:
         print(f"Logger error! {err.message}")
 
@@ -41,21 +43,27 @@ def main(argv) -> int:
     f    = None
 
     try:
+        logger.print(ErrType.INFO, "Reading file...")
         f = open(filename, "r")
         code = f.read()
     except FileNotFoundError:
+        if filename == "": filename = "nothing"
         logger.print(ErrType.FATAL, f"Given file ({filename}) is invalid")
+
     finally:
         if f is not None:
             f.close()
         else:
             return 1
 
-        if code == "": logger.print(ErrType.FATAL, f"File not given!")
+        if code == "": logger.print(ErrType.FATAL, "File not given!")
 
+        logger.print(ErrType.INFO, "Starting Lexer...")
         lexer = Lexer(code)
 
         lexer.lex()
+
+        logger.print(ErrType.INFO, f"Ending process with status 0")
 
         return 0
 
