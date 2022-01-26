@@ -1,7 +1,10 @@
 <div align="center">
+
 # Types
 | [Table of contents](./manual.md) | [Getting started](./getting_started.md) |
+
 </div>
+
 CALL is a dynamically typed language so you don't need to declare
 variables like C or Java, that's how you declare a variable
 ```asm
