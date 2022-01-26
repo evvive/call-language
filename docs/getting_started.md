@@ -25,7 +25,9 @@ rem Clone in the current directory
 git clone https://github.com/evvive/call-language
 ```
 
-Now with your favorite text editor create a new file and copy this example
+Now with your favorite text editor create a new file and call it
+`hello_world.call.asm` in the call directory and
+copy this example
 ```asm
 ; Hello, World program
 inc  STDLIB
@@ -37,4 +39,11 @@ call PrintLN NULL "Hello, World"
 
 ret  0
 ```
+Now run it with the command
+```bash
+python3 ./main.py ./hello_world.call.asm
+
+```
+
+
 See the manual to get an in-depth explanation on how this works
