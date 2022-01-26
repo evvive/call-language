@@ -6,6 +6,7 @@ Getting started with the call language
 Windows/MacOS
  - `git` Git CLI [here](https://git-scm.com/)
  - `python3` Python 3 [here](https://www.python.org/)
+
 Linux
 ```bash
 sudo apt install git python3 # Debian
