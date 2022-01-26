@@ -1,4 +1,10 @@
+<div align="center">
+
 # Hello World explanation
+| [Table of contents](./manual.md) | [Getting started](./getting_started.md) | [Syntax](./syntax.md) |
+
+</div>
+
 Probably you've copied the Hello World program but you don't know what it does
 well you are in the right place
 ```asm

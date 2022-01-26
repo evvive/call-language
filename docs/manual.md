@@ -1,12 +1,14 @@
 <div align="center">
 
 # CALL Manual v. beta
-| [Table of contents](./manual.md) | [Getting started](./getting_started.md) |
+| [Table of contents](./manual.md) | [Getting started](./getting_started.md) | [Syntax](./syntax.md) |
 
 </div>
 
  - [Getting Started](./getting_started.md)
  - [Hello World explanation](./hello_world.md)
+
+ - [Syntax](./syntax.md)
  - [Types](./types.md)
  - [Libraries](./libraries.md)
  - [Including files](./includes.md)

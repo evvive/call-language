@@ -1,4 +1,10 @@
-# Getting started in CALL
+<div align="center">
+
+# Getting started
+| [Table of contents](./manual.md) | [Getting started](./getting_started.md) | [Syntax](./syntax.md) |
+
+</div>
+
 Getting started with the call language
 
 ## Installing it on your system
@@ -44,6 +50,5 @@ Now run it with the command
 python3 ./main.py ./hello_world.call.asm
 
 ```
-
 
 See the manual to get an in-depth explanation on how this works
