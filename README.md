@@ -16,3 +16,7 @@ CALL is still work in progress
  - [ ] AST
  - [ ] Evaluator
  - [ ] First release
+
+## Documentation
+The documentation is not ready but I'm working on it
+ - [Docs](./docs/README.md)
