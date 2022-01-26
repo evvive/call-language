@@ -1,5 +1,8 @@
-# CALL Manual
-## Table of contents
+<div align="center">
+# CALL Manual v. beta
+| [Table of contents](./manual.md) | [Getting started](./getting_started.md) |
+</div>
+
  - [Getting Started](./getting_started.md)
  - [Hello World explanation](./hello_world.md)
  - [Types](./types.md)
