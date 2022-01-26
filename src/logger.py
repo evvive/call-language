@@ -7,63 +7,59 @@ class LoggerError(Exception):
 
         return
 
+    def __contains__(self, cls, item):
+        return item in [v.value for v in cls.__members__.values()]
+
 @unique
 class ErrType(Enum):
-    FATAL   = logging.FATAL
-    ERROR   = logging.ERROR
-    WARNING = logging.WARNING
-    INFO    = logging.INFO
+    FATAL   = 1
+    ERROR   = 2
+    WARNING = 3
+    INFO    = 4
+
+@unique
+class StatusType(Enum):
+    BEGIN  = 1
+    NORMAL = 2
+    EXIT   = 3
 
 class Logger:
-    def __init__(self, name: str, logfile: str, format: logging.Formatter, log: bool) -> None:
+    red = "\033[31m"
+    white = "\033[0M"
+    green = "\033[32M"
+    blue = "\033[34M"
+    pink = "\033[35M"
+
+    def __init__(self, name: str, log: bool) -> None:
         self.name    = name
-        self.logfile = logfile
-        self.format  = format
         self.log     = log
 
-        self.logger  = logging.getLogger(self.name)
-
-        self.create_handler()
-
         return
 
-    _levels = [
-        ErrType.FATAL,
-        ErrType.ERROR,
-        ErrType.WARNING,
-        ErrType.INFO
-    ]
+    def print(self, level, message: str, status) -> None:
+        prefix = ""
 
-    def create_handler(self) -> None:
+        if status == StatusType.NORMAL:
+            prefix = " |"
+        elif status == StatusType.EXIT:
+            prefix = "/ "
+        elif status == StatusType.BEGIN:
+            prefix = "\\ "
+        else:
+            raise LoggerError("Invalid status!")
+
         if self.log is False: return
 
-        handler = logging.FileHandler(self.logfile)
-
-        # Levels used by CALL
-        handler.setLevel(logging.FATAL)
-        handler.setLevel(logging.ERROR)
-        handler.setLevel(logging.WARNING)
-        handler.setLevel(logging.INFO)
-
-        handler.setFormatter(self.format)
-
-        self.logger.addHandler(handler)
-
-        return
-
-    def print(self, level, message: str) -> None:
-        if self.log is False: return
-
-        if level not in self._levels:
+        if level not in ErrType:
             raise LoggerError("Invalid level")
         else:
             if level == ErrType.FATAL:
-               self.logger.fatal(message)
+                print(prefix, self.name, "FATAL:", message)
             elif level == ErrType.ERROR:
-                self.logger.error(message)
+                print(prefix, self.name, "ERROR:", message)
             elif level == ErrType.WARNING:
-                self.logger.warning(message)
+                print(prefix, self.name, "WARNING:", message)
             elif level == ErrType.INFO:
-                self.logger.info(message)
+                print(prefix, self.name, "INFO:", message)
 
             return
