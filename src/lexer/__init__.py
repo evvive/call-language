@@ -66,20 +66,18 @@ class Lexer:
         variable      = False
         string        = False
         string_ignore = False
+        expr          = False
 
         for char_num, char in enumerate(splitted):
+
+            if tokens == []: first = True
+
             if char == "\n":
                 raise LexLineError(char_num, line, "Invalid \\n char")
 
-            if char == ";": break
+            if char == ";" and string is False and expr is False: break
 
-            if char == "@" and variable is False:
-                variable = True
-            elif char == "@" and variable is True:
-                raise LexLineError(char_num, line, "Invalid variable (@) token")
-
-            if char == '"' and string is False:
-                print("STRING!")
+            if char == '"' and string is False and expr is False:
                 tokens.append({
                     "token": Tokens.STRING,
                     "value": ""
@@ -89,8 +87,31 @@ class Lexer:
 
                 continue
 
+            if char == '[' and expr is False and string is False:
+                tokens.append({
+                    "token": Tokens.EXPR,
+                    "value": ""
+                })
+
+                expr = True
+
+                continue
+
+            if char == "]" and expr is False and string is False:
+                raise LexLineError(char_num, line, "Invalid ]")
+
+            if expr is True and string is False:
+                if char == "]":
+                    expr = False
+
+                    continue
+
+                tokens[len(tokens) - 1]["value"] += char
+
+
+                continue
+
             if string is True:
-                print("String is true", char)
                 if char == "\\":
                     string_ignore = True
 
@@ -104,7 +125,6 @@ class Lexer:
                     continue
 
                 if char == '"':
-                    print("END STRING!")
                     string = False
 
                     continue
@@ -112,6 +132,12 @@ class Lexer:
                 tokens[len(tokens) - 1]["value"] += char
 
                 continue
+
+            if char == "@" and variable is False:
+                variable = True
+            elif char == "@" and variable is True:
+                raise LexLineError(char_num, line, "Invalid variable (@) token")
+
 
             if variable is True:
                 if first is True:
@@ -138,18 +164,30 @@ class Lexer:
                         "token": Tokens.KEYWORD,
                         "value": char
                     })
+
+                    continue
                 elif tokens[len(tokens) - 1]["token"] == Tokens.KEYWORD:
                     tokens[len(tokens) - 1]["value"] += char
 
+                    continue
+
             if char == " ":
+                if first == True: continue
+
                 if tokens[len(tokens) - 1]["token"] == Tokens.KEYWORD:
                     first = True
+
                     continue
                 elif tokens[len(tokens) - 1]["token"] == Tokens.VARIABLE:
                     first = True
+
                     continue
 
             if first is True:
                 first = not first
+
+                continue
+
+            print("Invalid char '", char, "'")
 
         print(tokens)
