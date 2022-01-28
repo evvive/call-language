@@ -16,7 +16,7 @@ setarr @myarr 1 2 3 4      ; that's a dynamic array
 
 setdim @fixedarr 4 1 2 3 4 ; that's a fixed size array
 
-getidx @myarr 0            ; get first index
+getidx @idx @myarr 0       ; get first index
 ```
 
 ## Variable naming
@@ -30,7 +30,7 @@ set    @include_variable 1  ; variable name shouldn't include variable in
 
 set    @include 1           ; good
 
-set    @UPPER_VARIABLE 1    ; that's a constant
+setk   @UPPER_VARIABLE 1    ; that's a constant
 ```
 
 ## Types

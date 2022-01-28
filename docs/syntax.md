@@ -46,19 +46,22 @@ setk @KONSTANT    1 ; use setk instruction to set a constant
 
 set  @NO_KONSTANT   ; error!
 setk @konstant      ; error!
-
-setp @%pointer      ; that's a pointer (more in manual)
 ```
 
 ## Directives
-In CALL there are directives like C/C++
+In CALL there are directives like C/C++, all directives start are `d + [name]`
 ```asm
 !include "./myfile.call.asm" ; include file
+```
 
-!call                        ; print CALL message
+## Expressions
+In CALL there are expressions:
+```asm
+instr [ [expression] ] ; expression structure
 
-!define instr                ; define instruction
-!par    @a @b                ; define params
+instr [@a + @b]        ; arithmetic expression
 
-!ret                         ; instruction dont return a value
+instr [@a | @b]        ; bitwise expression
+
+instr [@a == @b]       ; logic expression
 ```

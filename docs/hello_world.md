@@ -14,6 +14,7 @@ deff Main                        ; Define the main function
 par  NULL                        ; without any parameter
 
 call PrintLN NULL "Hello, World" ; nothing = PrintLN("Hello, World")
+                                 ; NULL is required!
 
 ret  0                           ; return 0
 ```
