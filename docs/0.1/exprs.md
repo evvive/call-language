@@ -1,15 +1,13 @@
 <div align="center">
 
-# (1) CALL Docs: Syntax rules
-CALL 0.1 essential release<BR>
+# (1) CALL 0.1 Docs: Syntax rules
 
 | [Main page](../README.md) | [Table of contents](./README.md) |
-
-</div>
 
 **WARNING**: This release is **not** a final release and you shouldn't use it!
 it's just for developement/testing purposes
 
+</div>
 <hr>
 
 In CALL you can use expressions to do more complex operations:
@@ -22,7 +20,7 @@ left to right
 
 ## Using expressions instead of `cmp`
 In x86 assembly to compare 2 registers you use the `cmp` instruction
-```
+```asm
 Main:
     mov ax, 1
     cmp ax, 1
