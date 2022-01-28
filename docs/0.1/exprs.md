@@ -11,6 +11,8 @@ CALL 0.1 essential release<BR>
 **WARNING**: This release is **not** a final release and you shouldn't use it!
 it's just for developement/testing purposes
 
+<hr>
+
 In CALL you can use expressions to do more complex operations:
 ```asm
 ; @a = (((@b + @c) / @a) << 5) ** 2
