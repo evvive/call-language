@@ -1,9 +1,9 @@
 <div align="center">
 
 # CALL Documentation
-## 1: Syntax rules
 CALL 0.1 essential release<BR>
 
+## 1: Syntax rules
 | [Main page](../README.md) | [Table of contents](./README.md) |
 
 </div>
@@ -45,6 +45,7 @@ loclbl ax_is_1
 
 ```
 
+<hr>
 <div align="center">
 
 CALL 0.1 essential release<BR>
