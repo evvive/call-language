@@ -4,7 +4,7 @@
 
 | [Main page](../README.md) | [Table of contents](./README.md) |
 
-**WARNING**: This release is **not** a final release and you shouldn't use it!
+This release is **not** a final release and you shouldn't use it!
 it's just for developement/testing purposes
 
 </div>
