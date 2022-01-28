@@ -1,8 +1,10 @@
 <div align="center">
 
 # CALL Documentation
-CALL 0.1 essential release
-| [Main page](../README.md) | [Table of contents](./README.md)
+## 1: Syntax rules
+CALL 0.1 essential release<BR>
+
+| [Main page](../README.md) | [Table of contents](./README.md) |
 
 </div>
 
@@ -42,3 +44,10 @@ loclbl ax_is_1
     jmp    POS
 
 ```
+
+<div align="center">
+
+CALL 0.1 essential release<BR>
+| [Next](../README.md) | [Previous](./README.md) |
+
+</div>
