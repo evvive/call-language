@@ -1,9 +1,8 @@
 <div align="center">
 
-# CALL Documentation
+# (1) CALL Docs: Syntax rules
 CALL 0.1 essential release<BR>
 
-## 1: Syntax rules
 | [Main page](../README.md) | [Table of contents](./README.md) |
 
 </div>
