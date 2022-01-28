@@ -1,1 +1,1 @@
-hello "Hello ][[] ]]]]" [@a "He;llo"]
+!cmp [@a == @b]
