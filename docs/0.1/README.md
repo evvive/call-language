@@ -20,10 +20,10 @@ it's just for developement/testing purposes
 
 ## Table of contents
  - [Table of contents](./README.md)
- - [Syntax](./syntax.md)
- - [Stack](./stack.md)
- - [Expressions](./exprs.md)
- - [Labels](./labels.md)
- - [Compare](./cmp.md)
- - [Putting it all together](./final.md)
- - [Instruction table](./instr-table.md)
+ - 1: [Syntax](./1.md)
+ - 2: [Stack](./2.md)
+ - 3: [Expressions](./3.md)
+ - 4: [Labels](./4.md)
+ - 5: [Compare](./5.md)
+ - 6: [Putting it all together](./6.md)
+ - 7: [Instruction table](./7.md)
