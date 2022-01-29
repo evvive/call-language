@@ -1,10 +1,10 @@
 from lexer.tokens import Token, Tokens, KEYWORD_CHARS
 from lexer.errors import LexLineError, LexerError
 
+
 class Lexer:
     def __init__(self, code: str) -> None:
         self.code = code
-
 
     def lex(self):
         code = self.code.split("\n")
@@ -14,25 +14,33 @@ class Lexer:
             try:
                 self.lexline(line)
             except LexLineError as err:
-                raise LexerError(err.char_num, err.line, line_num, f"LexLine: {err.message}")
+                raise LexerError(
+                        err.char_num,
+                        err.line,
+                        line_num,
+                        f"LexLine: {err.message}"
+                )
 
+    # TODO: Reduce cyclomatic complexity
     def lexline(self, line: str):
-        splitted      = list(line)
+        splitted = list(line)
         tokens: list[Token] = []
-        first         = True
-        variable      = False
-        string        = False
+        first = True
+        variable = False
+        string = False
         string_ignore = False
-        expr          = False
+        expr = False
 
         for char_num, char in enumerate(splitted):
 
-            if tokens == []: first = True
+            if tokens == []:
+                first = True
 
             if char == "\n":
                 raise LexLineError(char_num, line, "Invalid \\n char")
 
-            if char == ";" and string is False and expr is False: break
+            if char == ";" and string is False and expr is False:
+                break
 
             if char == '"' and string is False and expr is False:
                 tokens.append(Token(Tokens.EXPR))
@@ -58,7 +66,6 @@ class Lexer:
                     continue
 
                 tokens[len(tokens) - 1].value += char
-
 
                 continue
 
@@ -87,8 +94,11 @@ class Lexer:
             if char == "@" and variable is False:
                 variable = True
             elif char == "@" and variable is True:
-                raise LexLineError(char_num, line, "Invalid variable (@) token")
-
+                raise LexLineError(
+                        char_num,
+                        line,
+                        "Invalid variable (@) token"
+                        )
 
             if variable is True:
                 if first is True:
@@ -114,7 +124,8 @@ class Lexer:
                     continue
 
             if char == " ":
-                if first == True: continue
+                if first is True:
+                    continue
 
                 if tokens[len(tokens) - 1].token == Tokens.KEYWORD:
                     first = True
