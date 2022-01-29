@@ -1,13 +1,15 @@
 <div align="center">
 
 # CALL Documentation
-CALL 0.1 essential release
+CALL 0.1 essential release<BR>
+
 | [Main page](../README.md) | [Table of contents](./README.md)
 
-</div>
-
-**WARNING**: This release is **not** a final release and you shouldn't use it!
+This release is **not** a final release and you shouldn't use it!
 it's just for developement/testing purposes
+
+</div>
+<hr>
 
 ## Release changelog
  - [ ] Implement basic features
@@ -27,3 +29,11 @@ it's just for developement/testing purposes
  - 5: [Compare](./5.md)
  - 6: [Putting it all together](./6.md)
  - 7: [Instruction table](./7.md)
+
+<hr>
+<div align="center">
+
+CALL 0.1 essential release<BR>
+| [Previous](../README.md) | [Next](./1.md) |
+
+</div>
