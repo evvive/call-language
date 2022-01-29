@@ -1,4 +1,5 @@
 from enum import Enum, auto
+from dataclasses import dataclass
 import string
 
 class Tokens(Enum):
@@ -15,9 +16,17 @@ class Tokens(Enum):
     # Other
     EXPR     = auto()
 
-    # @classmethod
-    # def __contains__(cls, item):
-    #     return item in [v.value for v in cls.__members__.values()]
+@dataclass
+class Token:
+    """Token class"""
+    token: Tokens
+    value: str = ""
+
+    def __init__(self, token: Tokens, value: str = "") -> None:
+        self.token = token
+        self.value = value
+
+        return
 
 class LexLineError(Exception):
     def __init__(self, char_num: int, line: str, message: str):
@@ -61,7 +70,7 @@ class Lexer:
 
     def lexline(self, line: str):
         splitted      = list(line)
-        tokens        = []
+        tokens: list[Token] = []
         first         = True
         variable      = False
         string        = False
@@ -78,20 +87,14 @@ class Lexer:
             if char == ";" and string is False and expr is False: break
 
             if char == '"' and string is False and expr is False:
-                tokens.append({
-                    "token": Tokens.STRING,
-                    "value": ""
-                })
+                tokens.append(Token(Tokens.EXPR))
 
                 string = True
 
                 continue
 
             if char == '[' and expr is False and string is False:
-                tokens.append({
-                    "token": Tokens.EXPR,
-                    "value": ""
-                })
+                tokens.append(Token(Tokens.EXPR))
 
                 expr = True
 
@@ -106,7 +109,7 @@ class Lexer:
 
                     continue
 
-                tokens[len(tokens) - 1]["value"] += char
+                tokens[len(tokens) - 1].value += char
 
 
                 continue
@@ -120,7 +123,7 @@ class Lexer:
                 if string_ignore is True:
                     string_ignore = not string_ignore
 
-                    tokens[len(tokens) - 1]["value"] += char
+                    tokens[len(tokens) - 1].value += char
 
                     continue
 
@@ -129,7 +132,7 @@ class Lexer:
 
                     continue
 
-                tokens[len(tokens) - 1]["value"] += char
+                tokens[len(tokens) - 1].value += char
 
                 continue
 
@@ -141,44 +144,35 @@ class Lexer:
 
             if variable is True:
                 if first is True:
-                    tokens.append({
-                        "token": Tokens.VARIABLE,
-                        "value": char
-                    })
-                elif tokens[len(tokens) - 1]["token"] != Tokens.VARIABLE:
-                    tokens.append({
-                        "token": Tokens.VARIABLE,
-                        "value": char
-                    })
-                elif tokens[len(tokens) - 1]["token"] == Tokens.VARIABLE:
-                    tokens[len(tokens) - 1]["value"] += char
+                    tokens.append(Token(Tokens.VARIABLE, char))
+
+                elif tokens[len(tokens) - 1].token != Tokens.VARIABLE:
+                    tokens.append(Token(Tokens.VARIABLE, char))
+
+                elif tokens[len(tokens) - 1].token == Tokens.VARIABLE:
+                    tokens[len(tokens) - 1].value += char
 
             if char in self.keyword_chars and not variable:
                 if first is True:
-                    tokens.append({
-                        "token": Tokens.KEYWORD,
-                        "value": char
-                    })
-                elif tokens[len(tokens) - 1]["token"] != Tokens.KEYWORD:
-                    tokens.append({
-                        "token": Tokens.KEYWORD,
-                        "value": char
-                    })
+                    tokens.append(Token(Tokens.KEYWORD, char))
+
+                elif tokens[len(tokens) - 1].token != Tokens.KEYWORD:
+                    tokens.append(Token(Tokens.KEYWORD, char))
 
                     continue
-                elif tokens[len(tokens) - 1]["token"] == Tokens.KEYWORD:
-                    tokens[len(tokens) - 1]["value"] += char
+                elif tokens[len(tokens) - 1].token == Tokens.KEYWORD:
+                    tokens[len(tokens) - 1].value += char
 
                     continue
 
             if char == " ":
                 if first == True: continue
 
-                if tokens[len(tokens) - 1]["token"] == Tokens.KEYWORD:
+                if tokens[len(tokens) - 1].token == Tokens.KEYWORD:
                     first = True
 
                     continue
-                elif tokens[len(tokens) - 1]["token"] == Tokens.VARIABLE:
+                elif tokens[len(tokens) - 1].token == Tokens.VARIABLE:
                     first = True
 
                     continue
