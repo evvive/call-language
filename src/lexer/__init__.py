@@ -1,32 +1,4 @@
-from enum import Enum, auto
-from dataclasses import dataclass
-import string
-
-class Tokens(Enum):
-    # Basics
-    KEYWORD  = auto()
-    VARIABLE = auto()
-
-    # Types
-    STRING   = auto()
-    NUMBER   = auto()
-    ARRAY    = auto()
-    NULL     = auto()
-
-    # Other
-    EXPR     = auto()
-
-@dataclass
-class Token:
-    """Token class"""
-    token: Tokens
-    value: str = ""
-
-    def __init__(self, token: Tokens, value: str = "") -> None:
-        self.token = token
-        self.value = value
-
-        return
+from tokens import Token, Tokens, KEYWORD_CHARS
 
 class LexLineError(Exception):
     def __init__(self, char_num: int, line: str, message: str):
@@ -60,13 +32,6 @@ class Lexer:
                 self.lexline(line)
             except LexLineError as err:
                 raise LexerError(err.char_num, err.line, line_num, f"LexLine: {err.message}")
-
-    keyword_chars = [
-        *string.ascii_lowercase,
-        "_",
-        "!",
-        "-"
-    ]
 
     def lexline(self, line: str):
         splitted      = list(line)
@@ -152,7 +117,7 @@ class Lexer:
                 elif tokens[len(tokens) - 1].token == Tokens.VARIABLE:
                     tokens[len(tokens) - 1].value += char
 
-            if char in self.keyword_chars and not variable:
+            if char in KEYWORD_CHARS and not variable:
                 if first is True:
                     tokens.append(Token(Tokens.KEYWORD, char))
 
