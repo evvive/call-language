@@ -30,6 +30,15 @@ it's just for developement/testing purposes
  - 6: [Putting it all together](./6.md)
  - 7: [Instruction table](./7.md)
 
+## License
+```
+-- BEGIN COPYRIGHT --
+Copyright 2022 Evvive & CALL Contributors
+Licensed under BSD-Clause-3 License, see:
+        https://github.com/evvive/call-language/blob/master/LICENSE
+-- END COPYRIGHT --
+```
+
 <hr>
 <div align="center">
 
