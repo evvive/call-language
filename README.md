@@ -23,3 +23,8 @@ The documentation is not ready but I'm working on it
 
 ## License
 CALL is licensed under [BSD-Clause-3 License](./LICENSE)
+```
+Copyright 2022 Evvive & CALL Contributors
+Licensed under BSD-Clause-3 License, see:
+    https://github.com/evvive/call-language/blob/master/LICENSE
+```
