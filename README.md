@@ -20,3 +20,6 @@ CALL is still work in progress
 ## Documentation
 The documentation is not ready but I'm working on it
  - [Docs](./docs/README.md)
+
+## License
+CALL is licensed under [BSD-Clause-3 License](./LICENSE)
