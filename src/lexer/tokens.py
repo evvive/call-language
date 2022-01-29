@@ -11,18 +11,20 @@ class Tokens(Enum):
     VARIABLE = auto()
 
     # Types
-    STRING   = auto()
-    NUMBER   = auto()
-    ARRAY    = auto()
-    NULL     = auto()
+    STRING = auto()
+    NUMBER = auto()
+    ARRAY = auto()
+    NULL = auto()
 
     # Other
-    EXPR     = auto()
+    EXPR = auto()
+
 
 KEYWORD_CHARS = [
     *ascii_lowercase,
     *["_", "!", "-"]
 ]
+
 
 @dataclass
 class Token:
