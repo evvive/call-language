@@ -1,2 +1,0 @@
-class LexerError(Exception):
-    pass

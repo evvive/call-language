@@ -35,4 +35,3 @@ class Token:
         self.value = value
 
         return
-
