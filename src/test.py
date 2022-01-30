@@ -1,7 +1,10 @@
-from lexer.linelexer import LineLexer
+from call.lexer.linelexer import LineLexer
+from call.ast.branchgenerator import BranchGenerator
 
-line = 'a @b 2555 555 5555 [344] 2"24string"'
+line = 'push 24'
 
 lexer = LineLexer(line)
-
 lexer.analyze()
+
+branch = BranchGenerator(lexer.tokens)
+branch.generate()
