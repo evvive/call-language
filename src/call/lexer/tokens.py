@@ -43,6 +43,3 @@ class Token:
         self.value = value
 
         return
-
-
-LexerList = list[Token]
