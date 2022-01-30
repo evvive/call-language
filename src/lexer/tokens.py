@@ -2,12 +2,13 @@ from enum import Enum, auto, unique
 from dataclasses import dataclass
 from string import ascii_lowercase
 
+
 @unique
 class Tokens(Enum):
     """Token enum"""
 
     # Basics
-    KEYWORD  = auto()
+    KEYWORD = auto()
     VARIABLE = auto()
 
     # Types
@@ -23,6 +24,11 @@ class Tokens(Enum):
 KEYWORD_CHARS = [
     *ascii_lowercase,
     *["_", "!", "-"]
+]
+
+NUMBER_CHARS = [
+    *[str(i) for i in range(10)],
+    "."
 ]
 
 
