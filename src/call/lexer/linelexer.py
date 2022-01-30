@@ -1,11 +1,11 @@
-from lexer.tokens import Token, Tokens, KEYWORD_CHARS, NUMBER_CHARS
+from lexer.tokens import Token, Tokens, KEYWORD_CHARS, NUMBER_CHARS, LexerList
 from lexer.errors import LexLineError as Error
 
 
 class LineLexer:
     def __init__(self, line: str) -> None:
         self.line: str = line
-        self.tokens: list[Token] = []
+        self.tokens: LexerList = []
         self.first = True
 
         self.variable = False
