@@ -1,5 +1,6 @@
-import logging
+import call.logging
 from enum import Enum, unique
+
 
 class LoggerError(Exception):
     def __init__(self, message: str) -> None:
@@ -10,18 +11,21 @@ class LoggerError(Exception):
     def __contains__(self, cls, item):
         return item in [v.value for v in cls.__members__.values()]
 
+
 @unique
 class ErrType(Enum):
-    FATAL   = 1
-    ERROR   = 2
+    FATAL = 1
+    ERROR = 2
     WARNING = 3
-    INFO    = 4
+    INFO = 4
+
 
 @unique
 class StatusType(Enum):
-    BEGIN  = 1
+    BEGIN = 1
     NORMAL = 2
-    EXIT   = 3
+    EXIT = 3
+
 
 class Logger:
     red = "\033[31m"
@@ -31,8 +35,8 @@ class Logger:
     pink = "\033[35M"
 
     def __init__(self, name: str, log: bool) -> None:
-        self.name    = name
-        self.log     = log
+        self.name = name
+        self.log = log
 
         return
 
@@ -48,7 +52,8 @@ class Logger:
         else:
             raise LoggerError("Invalid status!")
 
-        if self.log is False: return
+        if self.log is False:
+            return
 
         if level not in ErrType:
             raise LoggerError("Invalid level")
