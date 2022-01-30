@@ -17,14 +17,11 @@ class LineLexer:
         return
 
     def _append(self, token) -> None:
-        print("Appending...")
         self.tokens.append(token)
 
         return
 
     def _handle_expr(self, char_num: int, char: str) -> None:
-        print("Handling expression")
-
         if char == "]":
             self.expr = False
 
@@ -35,7 +32,6 @@ class LineLexer:
         return
 
     def _handle_str(self, char_num: int, char: str) -> None:
-        print("Handling string")
 
         if char == "\\":
             self.string_ignore = True
@@ -59,8 +55,6 @@ class LineLexer:
         return
 
     def _handle_variable(self, char_num: int, char: str):
-        print("Handling variable")
-
         if self.first is True:
             self._append(Token(
                 Tokens.VARIABLE,
@@ -77,7 +71,6 @@ class LineLexer:
         return
 
     def _handle_keyword(self, char_num: int, char: str) -> int:
-        print("Handling keyword")
         if self.first is True:
             self._append(Token(
                 Tokens.KEYWORD,
@@ -99,19 +92,16 @@ class LineLexer:
 
     def _handle_num(self, char_num: int, char: str) -> None:
         if self.first is True:
-            print("first is true")
             self._append(Token(
                 Tokens.NUMBER,
                 char
             ))
         elif self.tokens[len(self.tokens) - 1].token != Tokens.NUMBER:
-            print(".. Token is NUMBER")
             self._append(Token(
                 Tokens.NUMBER,
                 char
             ))
         elif self.tokens[len(self.tokens) - 1].token == Tokens.NUMBER:
-            print("APPENDING!")
             self.tokens[len(self.tokens) - 1].value += char
 
     def _analyze_char(self, char_num: int, char: str) -> None:
@@ -122,13 +112,11 @@ class LineLexer:
                         )
 
         if char == ";" and self.string is False and self.expr is False:
-            print("Comment found...")
             self.end = True
 
             return
 
         if char == '"' and self.string is False and self.expr is False:
-            print("string")
             self._append(Token(
                 Tokens.STRING
             ))
@@ -141,10 +129,7 @@ class LineLexer:
            and self.expr is False):
             self._handle_num(char_num, char)
 
-            print("number!")
-
         if char == "[" and self.expr is False and self.string is False:
-            print("Expression")
             self._append(Token(
                 Tokens.EXPR
             ))
@@ -200,7 +185,6 @@ class LineLexer:
                 return
 
         if char == " " and self.string is False:
-            print("Handling space")
             self.variable = False
             self.first = True
 
@@ -225,7 +209,5 @@ class LineLexer:
 
             if self.end is True:
                 break
-
-        print(self.tokens)
 
         return
