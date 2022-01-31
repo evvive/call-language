@@ -39,7 +39,7 @@ class Logger:
 
         return
 
-    def print(self, level, message: str, status) -> None:
+    def print(self, level, message: str, status: StatusType = StatusType.NORMAL) -> None:
         prefix = ""
 
         if status == StatusType.NORMAL:
