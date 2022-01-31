@@ -29,7 +29,7 @@ class TypeGenerator:
 
     @staticmethod
     def bol(value: str) -> Value:
-        if value.value.strip().lower() == "true":
+        if value.strip().lower() == "true":
             return Value(Types.BOL, True)
         elif value.strip().lower() == "false":
             return Value(Types.BOL, False)
