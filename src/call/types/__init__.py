@@ -11,6 +11,8 @@ class TypeGenerator:
             self.value = Value(Types.STR, value)
         elif type == Types.F64:
             self.value = self.f64(value)
+        elif type == Types.BOL:
+            self.value = self.bol(value)
         else:
             raise TypeGenerationError(type, value, "Unknown type")
 
@@ -31,3 +33,5 @@ class TypeGenerator:
             return Value(Types.BOL, True)
         elif value.strip().lower() == "false":
             return Value(Types.BOL, False)
+        else:
+            raise TypeGenerationError(Types.BOL, value, "Invalid bol")
