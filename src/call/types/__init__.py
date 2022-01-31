@@ -35,3 +35,20 @@ class TypeGenerator:
             return Value(Types.BOL, False)
         else:
             raise TypeGenerationError(Types.BOL, value, "Invalid bol")
+
+    @staticmethod
+    def detect(value: str) -> Value:
+        try:
+            t = TypeGenerator.bol(value).type
+        except TypeGenerationError:
+            t = None
+            try:
+                t = TypeGenerator.f64(value).type
+            except TypeGenerationError:
+                if t == Types.BOL:
+                    return Types.BOL
+                return Types.STR
+
+            return Types.F64
+
+        return Types.BOL
