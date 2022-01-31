@@ -39,5 +39,22 @@ except TypeGenerationError:
     logger.print(ErrType.INFO, "(f64_2) test passed", StatusType.NORMAL)
     pass
 
+# AUTO-DETECT TEST
+a = TypeGenerator.detect("0.2")
+if a == Types.F64:
+    logger.print(ErrType.INFO, "(autodetect) test passed", StatusType.NORMAL)
+
+a = TypeGenerator.detect("hello")
+if a == Types.STR:
+    logger.print(ErrType.INFO, "(autodetect2) test passed", StatusType.NORMAL)
+
+a = TypeGenerator.detect("true")
+if a == Types.BOL:
+    logger.print(ErrType.INFO, "(autodetect3) test passed", StatusType.NORMAL)
+
+a = TypeGenerator.detect("not true")
+if a == Types.STR:
+    logger.print(ErrType.INFO, "(autodetect4) test passed", StatusType.NORMAL)
+
 logger.print(ErrType.INFO, "all test passed!", StatusType.EXIT)
 exit(0)
