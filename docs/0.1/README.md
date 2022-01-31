@@ -12,23 +12,18 @@ it's just for developement/testing purposes
 <hr>
 
 ## Release changelog
- - [ ] Implement basic features
- - [ ] Master stack
- - [ ] User stack
- - [ ] `mexe` instruction
- - [ ] Expressions
- - [ ] Labels (`lbl` and `jmp`)
- - [ ] Compare (`cmp` and `doiffh`)
+ - Implement basic features
+ - Master stack
+ - User stack
+ - `mexe` instruction
 
 ## Table of contents
  - [Table of contents](./README.md)
- - 1: [Syntax](./1.md)
- - 2: [Stack](./2.md)
- - 3: [Expressions](./3.md)
- - 4: [Labels](./4.md)
- - 5: [Compare](./5.md)
- - 6: [Putting it all together](./6.md)
- - 7: [Instruction table](./7.md)
+ - 1: [Installation](./1.md)
+ - 2: [Syntax](./2.md)
+ - 3: [Stack](./3.md)
+ - 4: [Putting it all together](./4.md)
+ - 5: [Instruction table](./5.md)
 
 ## License
 ```
