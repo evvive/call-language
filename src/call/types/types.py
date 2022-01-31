@@ -13,4 +13,14 @@ class Types(Enum):
 @dataclass
 class Value:
     type: Types
-    value: any = 0
+
+    def __init__(self, type: Types, value: any):
+        if type == Types.STR:
+            self.type = Types.STR
+            self.value: str = value
+        elif type == Types.F64:
+            self.type = Types.F64
+            self.value: float = value
+        elif type == Types.BOL:
+            self.type = Types.BOL
+            self.value: bool = value
