@@ -1,4 +1,5 @@
 from call.types.types import Types, Value
+from call.lexer.tokens import Token, Tokens
 from call.types.errors import TypeGenerationError
 
 
@@ -52,3 +53,16 @@ class TypeGenerator:
             return Types.F64
 
         return Types.BOL
+
+    @staticmethod
+    def detect_token(token: Token) -> Value:
+        t = None
+
+        if token.token == Tokens.KEYWORD:
+            t = TypeGenerator.bol(token.value).type
+        elif token.token == Tokens.NUMBER:
+            t = TypeGenerator.f64(token.value).type
+        elif token.token == Tokens.STRING:
+            t = Types.STR
+
+        return t
